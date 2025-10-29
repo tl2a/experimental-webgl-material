@@ -1,15 +1,14 @@
 "use client";
 import { Leva } from "leva";
 import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
 import React from "react";
 const Scene = dynamic(() => import("@/components/Scene"), {
   ssr: false,
 });
 
-export default function Home() {
-  const searchParams = useSearchParams();
-  const showLeva = searchParams.get("leva") === "true";
+export default function Home({ searchParams }) {
+  // searchParams is provided by Next.js for server components
+  const showLeva = searchParams?.leva === "true";
 
   return (
     <main className="h-screen relative">
