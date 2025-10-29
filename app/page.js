@@ -8,7 +8,7 @@ const Scene = dynamic(() => import("@/components/Scene"), {
 
 export default function Home({ searchParams }) {
   // searchParams is provided by Next.js for server components
-  const showLeva = searchParams?.leva === "true";
+  const showLeva = searchParams?.debug === "true";
 
   return (
     <main className="h-screen relative">
