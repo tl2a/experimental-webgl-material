@@ -40,7 +40,7 @@ export function GelatinousCube(props) {
     meshPhysicalMaterial: false,
     transmissionSampler: false,
     backside: false,
-    cube: false,
+    anopheles: false,
     samples: { value: 10, min: 1, max: 32, step: 1 },
     resolution: { value: 2048, min: 256, max: 2048, step: 256 },
     transmission: { value: 1, min: 0, max: 1 },
@@ -56,36 +56,40 @@ export function GelatinousCube(props) {
     attenuationDistance: { value: 0.5, min: 0, max: 10, step: 0.01 },
     attenuationColor: "#d5d5d5", // "#ffffff",
     color: "#ff9999", // "#c9ffa1",
-    bg: "#968181" // "#839681",
+    bg: "#968181", // "#839681",
   });
   const { nodes, materials } = useGLTF("/shapes/experiemental.glb");
   return (
     <group dispose={null}>
-      {config.cube ? (
-        <mesh geometry={nodes.Cube.geometry}>
-          {config.meshPhysicalMaterial ? (
-            <meshPhysicalMaterial {...config} />
-          ) : (
-            <MeshTransmissionMaterial
-              background={new THREE.Color(config.bg)}
-              {...config}
-            />
-          )}
-        </mesh>
-      ) : (
-        <mesh geometry={nodes.Icosphere.geometry}>
-          {config.meshPhysicalMaterial ? (
-            <meshPhysicalMaterial {...config} />
-          ) : (
-            <MeshTransmissionMaterial
-              background={new THREE.Color(config.bg)}
-              {...config}
-            />
-          )}
-        </mesh>
-      )}
+      <mesh geometry={nodes.Icosphere.geometry}>
+        {config.meshPhysicalMaterial ? (
+          <meshPhysicalMaterial {...config} />
+        ) : (
+          <MeshTransmissionMaterial
+            background={new THREE.Color(config.bg)}
+            {...config}
+          />
+        )}
+      </mesh>
       {/* {config.cube ? <mesh geometry={nodes.Cube.geometry} material={materials.cube_mat} /> : null} */}
-      <mesh geometry={nodes.Skull.geometry} material={materials.skull} />
+      {config.anopheles ? (
+        <group dispose={null}>
+          <mesh
+            geometry={nodes.AnophelesBody.geometry}
+            material={materials.BODY_MOSQUITO}
+          />
+          <mesh
+            geometry={nodes.AnophelesEyes.geometry}
+            material={materials.EYES_MOSQUITO}
+          />
+          <mesh
+            geometry={nodes.AnophelesWings.geometry}
+            material={materials.WINGS}
+          />
+        </group>
+      ) : (
+        <mesh geometry={nodes.Skull.geometry} material={materials.skull} />
+      )}
     </group>
   );
 }

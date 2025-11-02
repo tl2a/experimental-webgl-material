@@ -13,7 +13,7 @@ export default function Scene() {
       gl={{ preserveDrawingBuffer: true }}
       // camera={{ position: [-1, -1, -4] }}
       shadows
-      camera={{ position: [8, 0, -2], fov: 6 }}
+      camera={{ position: [8, 0, -2], fov: 10 }}
     >
       <OrbitControls
         // minPolarAngle={Math.PI / 2}
