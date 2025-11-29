@@ -3,7 +3,12 @@ import React from "react";
 // import Model from "./Model";
 // import ModelGlass from "./ModelGlass";
 // import ModelShapes from "./ModelShapes";
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
+import {
+  ContactShadows,
+  Environment,
+  OrbitControls,
+  PresentationControls,
+} from "@react-three/drei";
 import ModelCustom from "./ModelCustom";
 
 export default function Scene() {
@@ -13,9 +18,9 @@ export default function Scene() {
       gl={{ preserveDrawingBuffer: true }}
       // camera={{ position: [-1, -1, -4] }}
       shadows
-      camera={{ position: [8, 0, -2], fov: 10 }}
+      camera={{ position: [8, 0, 2], fov: 8 }}
     >
-      <OrbitControls
+      {/* <OrbitControls
         // minPolarAngle={Math.PI / 2}
         maxPolarAngle={Math.PI / 2}
         enablePan={false}
@@ -23,12 +28,21 @@ export default function Scene() {
         autoRotate
         autoRotateSpeed={0.05}
         makeDefault
-      />
+      />*/}
 
       {/* <Model /> */}
       {/* <ModelGlass /> */}
       {/* <ModelShapes /> */}
-      <ModelCustom />
+      <PresentationControls
+        global
+        config={{ mass: 2, tension: 500 }}
+        snap={{ mass: 4, tension: 1000 }}
+        rotation={[0, 1.3, 0]}
+        polar={[-Math.PI / 3, Math.PI / 3]}
+        azimuth={[-Math.PI / 1.4, Math.PI / 2]}
+      >
+        <ModelCustom />
+      </PresentationControls>
       <ContactShadows
         frames={1}
         position={[0, -0.3, 0]}

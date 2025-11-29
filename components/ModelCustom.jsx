@@ -7,6 +7,7 @@ import {
   Center,
 } from "@react-three/drei";
 import { useControls } from "leva";
+import TextAttached from "./TextAttached";
 
 export default function ModelCustom() {
   return (
@@ -59,9 +60,11 @@ export function GelatinousCube(props) {
     bg: "#968181", // "#839681",
   });
   const { nodes, materials } = useGLTF("/shapes/experiemental.glb");
+
   return (
     <group dispose={null}>
       <mesh geometry={nodes.Icosphere.geometry}>
+        <TextAttached />
         {config.meshPhysicalMaterial ? (
           <meshPhysicalMaterial {...config} />
         ) : (

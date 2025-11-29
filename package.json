@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
     "@react-three/drei": "^9.105.4",
     "@react-three/fiber": "^8.16.2",
+    "gsap": "^3.13.0",
     "leva": "^0.9.35",
     "motion": "^12.23.24",
     "next": "14.2.2",
